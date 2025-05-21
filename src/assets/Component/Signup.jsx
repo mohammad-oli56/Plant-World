@@ -44,17 +44,42 @@ const Signup = () => {
 	const handelsignup = (e) => {
 		e.preventDefault();
 
-		const username = e.target.username.value;
-		const email = e.target.email.value;
-		const photo = e.target.photo.value;
-		const password = e.target.password.value;
+		const form = e.target;
+		const formData = new FormData(form);
 
-		console.log(username, password, email, photo)
+		const { email, password, ...rest } = Object.fromEntries(formData.entries())
+
+
+
+		// console.log(password, email, userProfile)
+
+
 		signup(email, password)
-			.then((userCredential) => {
+			.then((result) => {
+
+				const userProfile = {
+					email,
+					...rest,
+					creationTime : result.user?.metadata?.creationTime,
+					lastSignInTime : result.user?.metadata?.lastSignInTime
+				}
+
 				// Signed up 
-				const user = userCredential.user;
-				console.log(user)
+				// const user = userCredential.user;
+				// console.log(user)
+
+				fetch('http://localhost:3000/users', {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json'
+					},
+					body: JSON.stringify(userProfile)
+				})
+					.then(res => res.json())
+					.then(data => {
+						console.log('after profile same', data)
+					})
+
 				navigate(from ? from : "/")
 				toast('🦄 Wow so easy!', {
 					position: "top-right",
@@ -65,6 +90,7 @@ const Signup = () => {
 					draggable: true,
 					progress: undefined,
 					theme: "light",
+
 
 				});
 			})

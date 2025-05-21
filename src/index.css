@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.active {
+    color: blueviolet;           /* Set the text color */
+    font-weight: bold;           /* Apply bold font weight */
+    text-decoration: underline;  /* Underline the text */
+}

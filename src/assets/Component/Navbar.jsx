@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { valueContext } from '../../Mainlayout/Mainlayout';
 
 const Navbar = () => {
@@ -25,10 +25,10 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 space-x-5">
-                    <Link to='/'>Home</Link>
-                    <Link to='/allplant'>All Plant</Link>
-                    <Link to='/myplaint'>My Plants</Link>
-                    <Link to='/addplain'>Add Plant</Link>
+                    <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/allplant'>All Plant</NavLink>
+                    <NavLink to='/myplaint'>My Plants</NavLink>
+                    <NavLink to='/addplain'>Add Plant</NavLink>
                 </ul>
             </div>
             <div className="navbar-end">
