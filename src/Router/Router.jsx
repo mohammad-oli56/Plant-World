@@ -12,6 +12,7 @@ import Allplant from '../assets/Component/Allplant';
 import Myplant from '../assets/Component/Myplant';
 import Addplant from '../assets/Component/Addplant';
 import Details from '../assets/Component/Details';
+import UpdatePage from '../assets/Component/UpdatePage';
 
 
 export const router = createBrowserRouter([
@@ -50,6 +51,12 @@ export const router = createBrowserRouter([
                 path: '/details/:id',
                 element: <Details />, 
                 loader: ({ params }) => fetch(`http://localhost:3000/plants/${params.id}`)
+            },
+            {
+                path:'/update/:id',
+                loader:({params})=>fetch(`http://localhost:3000/plants/${params.id}`),
+                element:<UpdatePage></UpdatePage>
+                
             }
 
         ]

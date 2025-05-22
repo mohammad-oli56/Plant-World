@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const Myplantcard = ({ mypln, onDelete }) => {
@@ -65,7 +66,10 @@ const Myplantcard = ({ mypln, onDelete }) => {
                 <p className="text-sm mt-2 italic text-green-700">{description}</p>
 
                 <div className="card-actions justify-end mt-4">
-                    <button className="btn btn-success">Edit</button>
+                    <Link to={`/update/${_id}`}>
+                     <button className="btn btn-success">Edit</button>
+                    </Link>
+                   
                     <button onClick={() => handelDelete(_id)} className="btn btn-error text-white">Delete</button>
                 </div>
             </div>
