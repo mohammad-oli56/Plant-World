@@ -13,12 +13,15 @@ import Myplant from '../assets/Component/Myplant';
 import Addplant from '../assets/Component/Addplant';
 import Details from '../assets/Component/Details';
 import UpdatePage from '../assets/Component/UpdatePage';
+import Private from '../Private/Private';
+import Error from '../assets/Component/Error';
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         Component: Mainlayout,
+        errorElement:<Error></Error>,
         children: [
             {
                 index: true,
@@ -37,15 +40,18 @@ export const router = createBrowserRouter([
             {
                 path: 'allplant',
                 loader: () => fetch('http://localhost:3000/plants'),
-                Component: Allplant
+                // Component: Allplant,
+                element:<Private><Allplant></Allplant></Private>
             },
             {
                 path: '/myplaint',
-                Component: Myplant
+                element:<Private><Myplant></Myplant></Private>
+                // Component: Myplant
             },
             {
                 path: '/addplain',
-                Component: Addplant
+                element:<Private><Addplant></Addplant></Private>
+                // Component: Addplant
             },
             {
                 path: '/details/:id',

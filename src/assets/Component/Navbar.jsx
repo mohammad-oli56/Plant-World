@@ -25,10 +25,19 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 space-x-5">
-                    <NavLink to='/'>Home</NavLink>
-                    <NavLink to='/allplant'>All Plant</NavLink>
-                    <NavLink to='/myplaint'>My Plants</NavLink>
-                    <NavLink to='/addplain'>Add Plant</NavLink>
+                    <NavLink to='/' className="btn">Home</NavLink>
+                  
+                         <NavLink to='/allplant' className="btn">All Plant</NavLink>
+                 
+                     {
+                        userprofile?.email && <NavLink className="btn" to='/myplaint'>My Plants</NavLink>
+                    }
+                     {
+                        userprofile?.email && <NavLink to='/addplain' className="btn">Add Plant</NavLink>
+                    }
+                    
+                    
+                    
                 </ul>
             </div>
             <div className="navbar-end">
@@ -63,8 +72,8 @@ const Navbar = () => {
 
                     {
                         !userprofile?.email && <div className='flex items-center gap-3.5'>
-                            <Link to='/login'><button>Login</button></Link>
-                            <Link to='/signup' >Sign-up</Link>
+                            <Link to='/login' className="btn">Login</Link>
+                            <Link to='/signup'className="btn" >Sign-up</Link>
 
                         </div>
                     }
@@ -73,7 +82,7 @@ const Navbar = () => {
                             onClick={handelLogout}
                             className="inline-flex btn-warning items-center justify-center w-full px-5 py-2 text-base font-bold leading-6 text-white bg-indigo-600 border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                         >
-                          Sign-out
+                            Sign-out
                         </button>
 
                     }
