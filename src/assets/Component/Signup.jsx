@@ -81,7 +81,7 @@ const Signup = () => {
 					})
 
 				navigate(from ? from : "/")
-				toast('🦄 Wow so easy!', {
+				toast('Sign_up Successfuly', {
 					position: "top-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -160,7 +160,7 @@ const Signup = () => {
 
 			</div>
 			<p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
-				<a rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Sign up</a>
+				<a rel="noopener noreferrer" href="login" className="underline dark:text-gray-800">Sign up</a>
 			</p>
 		</div>
 	);

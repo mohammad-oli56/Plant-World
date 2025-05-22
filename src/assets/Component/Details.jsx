@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router'; // Use react-router-dom not 'react-router'
+import { Link, useLoaderData } from 'react-router'; // Use react-router-dom not 'react-router'
 
 const Details = () => {
     const plant = useLoaderData();
@@ -23,7 +23,7 @@ const Details = () => {
                     className="w-full h-64 object-cover"
                 />
                 <div className="p-6 space-y-4">
-                    <h2 className="text-2xl font-bold text-gray-800">{plantName}</h2>
+                    <h2 className="text-2xl font-bold text-gray-800">plantName: {plantName}</h2>
                     
                     <ul className="space-y-1 text-sm text-gray-600">
                         <li><span className="font-medium">Category:</span> {category}</li>
@@ -34,12 +34,15 @@ const Details = () => {
                         <li><span className="font-medium">Watering Frequency:</span> {wateringFrequency}</li>
                     </ul>
 
-                    <button
+                  <Link to='/allplant'>
+                    <button 
+
                         type="button"
                         className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
                     >
-                        Read More
+                        Back
                     </button>
+                  </Link>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ import { valueContext } from '../../Mainlayout/Mainlayout';
 
 const Navbar = () => {
     const { userprofile, handelLogout } = useContext(valueContext)
+    console.log(userprofile)
 
     return (
         <div className="navbar bg-[#4b6043] shadow-sm">
@@ -21,23 +22,23 @@ const Navbar = () => {
                         <Link to='/addplain'>Add Plant</Link>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">🌿daisyUI</a>
+                <a className="text-white text-3xl">🌿Plant-World</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 space-x-5">
                     <NavLink to='/' className="btn">Home</NavLink>
-                  
-                         <NavLink to='/allplant' className="btn">All Plant</NavLink>
-                 
-                     {
+
+                    <NavLink to='/allplant' className="btn">All Plant</NavLink>
+
+                    {
                         userprofile?.email && <NavLink className="btn" to='/myplaint'>My Plants</NavLink>
                     }
-                     {
+                    {
                         userprofile?.email && <NavLink to='/addplain' className="btn">Add Plant</NavLink>
                     }
-                    
-                    
-                    
+
+
+
                 </ul>
             </div>
             <div className="navbar-end">
@@ -60,9 +61,14 @@ const Navbar = () => {
                                 <ul
                                     className="menu menu-sm absolute right-0 bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200"
                                 >
-                                    <li><a>{
-                                        userprofile?.email
-                                    }</a></li>
+                                    <li className="flex flex-row items-center">
+                                        Email: <a href={`mailto:${userprofile?.email}`}>{userprofile?.email}</a>
+                                    </li>
+
+                                    <li className="flex flex-row items-center">
+                                        Name: <span>{userprofile?.displayName}</span>
+                                    </li>
+
                                 </ul>
                             </div>
 
@@ -73,7 +79,7 @@ const Navbar = () => {
                     {
                         !userprofile?.email && <div className='flex items-center gap-3.5'>
                             <Link to='/login' className="btn">Login</Link>
-                            <Link to='/signup'className="btn" >Sign-up</Link>
+                            <Link to='/signup' className="btn" >Sign-up</Link>
 
                         </div>
                     }

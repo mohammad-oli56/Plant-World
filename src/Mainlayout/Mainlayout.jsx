@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import Navbar from '../assets/Component/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../assets/Component/Footer';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
 import { ToastContainer } from 'react-toastify';
 export const valueContext = createContext();
@@ -22,6 +22,24 @@ const Mainlayout = () => {
         return signInWithPopup(auth, provider)
 
     }
+
+    
+
+     const uselogin = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+    // .then((userCredential) => {
+    //     // Signed in 
+    //     const user = userCredential.user;
+    //     setUserprofile(user);
+    //     // console.log(user)
+    // })
+    // .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode,errorMessage)
+    // });
+  }
+
 
     const handelLogout = () => {
 
@@ -67,6 +85,7 @@ const Mainlayout = () => {
         userprofile,
         loding,
         handelLogout,
+        uselogin
 
     }
     return (

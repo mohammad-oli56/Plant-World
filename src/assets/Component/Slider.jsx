@@ -1,46 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+const images = [
+  "https://thumbs.dreamstime.com/b/green-palm-leaves-flowers-banner-tropical-plant-hand-painted-watercolor-illustration-isolated-white-background-realistic-178542042.jpg",
+  "https://www.shutterstock.com/image-photo/banner-green-echeveria-front-window-260nw-1352072093.jpg",
+  "https://as2.ftcdn.net/jpg/02/25/44/15/1000_F_225441554_FBM3BPaYiliBNZfGnf0mvEFp1zQlINuN.jpg",
+  "https://img.pikbest.com/backgrounds/20190708/small-fresh-green-plant-banner-poster-background_1897711.jpg!bw700"
+];
 
 const Slider = () => {
-    return (
-       <div className="carousel w-full">
-  <div id="slide1" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide4" className="btn btn-circle">❮</a>
-      <a href="#slide2" className="btn btn-circle">❯</a>
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex(prev => (prev + 1) % images.length);
+    }, 2000); // 4-second delay between slides
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="carousel w-full">
+      {images.map((img, i) => (
+        <div
+          key={i}
+          className={`carousel-item relative w-full ${i === index ? 'block' : 'hidden'}`}
+        >
+          <img src={img} className="w-full" alt={`Slide ${i + 1}`} />
+          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <button
+              onClick={() => setIndex((index - 1 + images.length) % images.length)}
+              className="btn btn-circle"
+            >
+              ❮
+            </button>
+            <button
+              onClick={() => setIndex((index + 1) % images.length)}
+              className="btn btn-circle"
+            >
+              ❯
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
-  </div>
-  <div id="slide2" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide1" className="btn btn-circle">❮</a>
-      <a href="#slide3" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-  <div id="slide3" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide2" className="btn btn-circle">❮</a>
-      <a href="#slide4" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-  <div id="slide4" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide3" className="btn btn-circle">❮</a>
-      <a href="#slide1" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-</div>
-    );
+  );
 };
 
 export default Slider;

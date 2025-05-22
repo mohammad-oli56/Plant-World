@@ -1,6 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
+
+        const tost=()=>{
+            toast.success('messege sent ', {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "colored",
+// transition: Bounce,
+});
+        }
+
     return (
         <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 bg-[#A8C686]">
             <div className="flex flex-col justify-between">
@@ -23,7 +40,9 @@ const Contact = () => {
                     <label htmlFor="message" className="text-sm">Message</label>
                     <textarea id="message" rows="3" className="w-full p-3 rounded dark:bg-gray-100"></textarea>
                 </div>
-                <button type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-600 dark:text-gray-50">Send Message</button>
+               <Link to='/'>
+                <button onClick={tost}  type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-600 dark:text-gray-50">Send Message</button>
+               </Link>
             </form>
         </div>
     );
