@@ -125,7 +125,7 @@ const Signup = () => {
 
 					<input type="password" name="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 					<div className="flex justify-end text-xs dark:text-gray-600">
-						<a rel="noopener noreferrer" href="#">Forgot Password?</a>
+						{/* <a rel="noopener noreferrer" href="#">Forgot Password?</a> */}
 					</div>
 				</div>
 

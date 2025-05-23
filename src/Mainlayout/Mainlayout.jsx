@@ -2,9 +2,9 @@ import React, { createContext, useEffect, useState } from 'react';
 import Navbar from '../assets/Component/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../assets/Component/Footer';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 export const valueContext = createContext();
 
 const Mainlayout = () => {
@@ -23,22 +23,22 @@ const Mainlayout = () => {
 
     }
 
-    
 
-     const uselogin = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password)
-    // .then((userCredential) => {
-    //     // Signed in 
-    //     const user = userCredential.user;
-    //     setUserprofile(user);
-    //     // console.log(user)
-    // })
-    // .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorCode,errorMessage)
-    // });
-  }
+
+    const uselogin = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+        // .then((userCredential) => {
+        //     // Signed in 
+        //     const user = userCredential.user;
+        //     setUserprofile(user);
+        //     // console.log(user)
+        // })
+        // .catch((error) => {
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+        //     console.log(errorCode,errorMessage)
+        // });
+    }
 
 
     const handelLogout = () => {
@@ -78,6 +78,40 @@ const Mainlayout = () => {
 
     }, [])
 
+    const handelForgetpass = (email) => {
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+
+                toast.success('Reset password email sent!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    // transition: Bounce,
+                });
+
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                // alert("Failed to send reset email. Please try again.");
+                 toast.success('Failed to send reset email. Please try again.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    // transition: Bounce,
+                });
+            });
+    };
+
 
     const ContextValues = {
         signup,
@@ -85,7 +119,8 @@ const Mainlayout = () => {
         userprofile,
         loding,
         handelLogout,
-        uselogin
+        uselogin,
+        handelForgetpass
 
     }
     return (

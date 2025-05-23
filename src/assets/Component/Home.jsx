@@ -10,7 +10,8 @@ import Cardplant from './Cardplant';
 
 const Home = () => {
   const plants = useLoaderData();
-  const [showAll, setShowAll] = useState(false);
+  const [showAll] = useState(false);
+  // console.log(setShowAll)
 
   const visiblePlants = showAll ? plants : plants.slice(0, 6);
   const today = format(new Date(), 'yyyy-MM-dd');

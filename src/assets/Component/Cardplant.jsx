@@ -19,8 +19,8 @@ const Cardplant = ({ plant }) => {
         </figure>
 
         <div className="card-body w-2/3 p-4">
-          <h2 className="card-title text-lg font-semibold">{plantName}</h2>
-          <p className="text-sm text-gray-600">{description}</p>
+          <h2 className="card-title text-lg font-semibold">PlantName :{plantName}</h2>
+          <p className="text-sm text-gray-600">Description: {description}</p>
 
           <div className="card-actions justify-end mt-auto">
             <button

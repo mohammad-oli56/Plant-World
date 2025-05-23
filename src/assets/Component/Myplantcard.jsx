@@ -57,13 +57,13 @@ const Myplantcard = ({ mypln, onDelete }) => {
                 />
             </figure>
             <div className="card-body text-green-900 lg:w-2/3">
-                <h2 className="card-title text-2xl font-bold">{plantName}</h2>
+                <h2 className="card-title text-2xl font-bold">PlantName :{plantName}</h2>
                 <p className="text-sm text-green-800"><span className="font-medium">Category:</span> {category || 'N/A'}</p>
                 <p className="text-sm text-green-800"><span className="font-medium">Watering Frequency:</span> {wateringFrequency}</p>
                 <p className="text-sm text-green-800"><span className="font-medium">Next Watering:</span> {nextWatering || 'Not scheduled'}</p>
                 <p className="text-sm text-green-800"><span className="font-medium">Care Level:</span> {careLevel || 'Moderate'}</p>
                 <p className="text-sm text-green-800"><span className="font-medium">Health Status:</span> {healthStatus || 'Healthy'}</p>
-                <p className="text-sm mt-2 italic text-green-700">{description}</p>
+                <p className="text-sm mt-2 italic text-green-700">Description :{description}</p>
 
                 <div className="card-actions justify-end mt-4">
                     <Link to={`/update/${_id}`}>
