@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const Cardplant = ({ plant }) => {
-  const { _id, image, plantName, description } = plant;
+  const { _id, image, plantName, description,addedAt } = plant;
   const navigate = useNavigate();
-
+console.log(addedAt)
   return (
     <div className="w-full max-w-[500px] mx-auto">
       <div className="card card-side bg-amber-400 shadow-md h-[200px]">

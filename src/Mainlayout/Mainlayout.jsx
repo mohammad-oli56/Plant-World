@@ -2,141 +2,82 @@ import React, { createContext, useEffect, useState } from 'react';
 import Navbar from '../assets/Component/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../assets/Component/Footer';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
 import { toast, ToastContainer } from 'react-toastify';
+
 export const valueContext = createContext();
 
 const Mainlayout = () => {
-    const provider = new GoogleAuthProvider();
-    const [userprofile, setUserprofile] = useState(null);
-    const [loding, setLoding] = useState(true);
+  const provider = new GoogleAuthProvider();
+  const [userprofile, setUserprofile] = useState(null);
+  const [loding, setLoding] = useState(true);
 
+  // Theme state
+  const [theme, setTheme] = useState('light');
 
-    const signup = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+  useEffect(() => {
+    const saved = localStorage.getItem('theme') || 'light';
+    setTheme(saved);
+    document.documentElement.setAttribute('data-theme', saved);
+  }, []);
 
-    const google = () => {
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
 
-        return signInWithPopup(auth, provider)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (userprofile) => {
+      setUserprofile(userprofile);
+      setLoding(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-    }
+  const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+  const google = () => signInWithPopup(auth, provider);
+  const uselogin = (email, password) => signInWithEmailAndPassword(auth, email, password);
+  const handelLogout = () => signOut(auth).catch(console.error);
 
+  const handelForgetpass = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => toast.success("Reset password email sent!"))
+      .catch(() => toast.error("Failed to send reset email."));
+  };
 
+  const ContextValues = {
+    signup,
+    google,
+    userprofile,
+    loding,
+    handelLogout,
+    uselogin,
+    handelForgetpass,
+    theme,
+    toggleTheme,
+  };
 
-    const uselogin = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
-        // .then((userCredential) => {
-        //     // Signed in 
-        //     const user = userCredential.user;
-        //     setUserprofile(user);
-        //     // console.log(user)
-        // })
-        // .catch((error) => {
-        //     const errorCode = error.code;
-        //     const errorMessage = error.message;
-        //     console.log(errorCode,errorMessage)
-        // });
-    }
-
-
-    const handelLogout = () => {
-
-        signOut(auth).then(() => {
-            // Sign-out successful.
-        }).catch((error) => {
-            console.log(error)
-        });
-
-    }
-
-
-    useEffect(() => {
-
-        const unscribe = onAuthStateChanged(auth, (userprofile) => {
-
-            // console.log(userprofile)
-
-            setUserprofile(userprofile);
-            setLoding(false);
-
-            if (userprofile) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/auth.user
-                //   const uid = userprofile.uid;
-                // ...
-            } else {
-                // User is signed out
-                // ...
-            }
-        });
-
-        return () => {
-            unscribe();
-        }
-
-    }, [])
-
-    const handelForgetpass = (email) => {
-        sendPasswordResetEmail(auth, email)
-            .then(() => {
-
-                toast.success('Reset password email sent!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    // transition: Bounce,
-                });
-
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-                // alert("Failed to send reset email. Please try again.");
-                 toast.success('Failed to send reset email. Please try again.', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    // transition: Bounce,
-                });
-            });
-    };
-
-
-    const ContextValues = {
-        signup,
-        google,
-        userprofile,
-        loding,
-        handelLogout,
-        uselogin,
-        handelForgetpass
-
-    }
-    return (
-        <div>
-            <valueContext.Provider value={ContextValues}>
-                <Navbar></Navbar>
-                <div className='min-h-[calc(100vh-116px)]'>
-                    <div className='max-w-screen-2xl mx-auto px-8 md:px-12 lg:px-16'>
-                        <Outlet></Outlet>
-                    </div>
-                </div>
-            </valueContext.Provider>
-            <Footer></Footer>
-            <ToastContainer></ToastContainer>
-        </div>
-    );
+  return (
+    <valueContext.Provider value={ContextValues}>
+      <Navbar />
+      <div className="min-h-[calc(100vh-116px)] max-w-screen-2xl mx-auto px-8 md:px-12 lg:px-16">
+        <Outlet />
+      </div>
+      <Footer />
+      <ToastContainer />
+    </valueContext.Provider>
+  );
 };
 
 export default Mainlayout;

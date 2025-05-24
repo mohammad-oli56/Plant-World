@@ -13,6 +13,9 @@ const Addplant = () => {
 
         plantData.email = userprofile.email;
 
+        // Add current date and time
+        plantData.addedAt = new Date().toISOString();
+
         fetch('https://assingment-server-sable.vercel.app/plants', {
             method: 'POST',
             headers: {

@@ -3,103 +3,62 @@ import { Link, NavLink } from 'react-router';
 import { valueContext } from '../../Mainlayout/Mainlayout';
 
 const Navbar = () => {
-    const { userprofile, handelLogout } = useContext(valueContext)
-    console.log(userprofile)
+  const { userprofile, handelLogout, theme, toggleTheme } = useContext(valueContext);
 
-    return (
-        <div className="navbar bg-[#4b6043] shadow-sm">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <Link to='/'>Home</Link>
-                        <Link to='/allplant'>All Plant</Link>
-                        <Link to='/myplaint'>My Plants</Link>
-                        <Link to='/addplain'>Add Plant</Link>
-                    </ul>
+  return (
+    <div className="navbar bg-[#4b6043] text-white">
+      <div className="navbar-start">
+        <a className="text-white text-3xl">🌿Plant-World</a>
+      </div>
+
+      <div className="navbar-center hidden lg:flex space-x-4">
+        <NavLink to="/" className="btn">Home</NavLink>
+        <NavLink to="/allplant" className="btn">All Plant</NavLink>
+        {userprofile?.email && <NavLink to="/myplaint" className="btn">My Plants</NavLink>}
+        {userprofile?.email && <NavLink to="/addplain" className="btn">Add Plant</NavLink>}
+      </div>
+
+      <div className="navbar-end space-x-4 flex items-center">
+        {/* Dark/Light Toggle Button */}
+        <button onClick={toggleTheme} className="btn btn-ghost text-xl">
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
+
+        {!userprofile?.email ? (
+          <>
+            <Link to="/login" className="btn">Login</Link>
+            <Link to="/signup" className="btn">Sign-up</Link>
+          </>
+        ) : (
+          <>
+            {/* Profile Avatar with Hover Dropdown */}
+            <div className="relative group">
+              <div className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 h-10 rounded-full overflow-hidden ring ring-blue-500 ring-offset-base-100 ring-offset-2">
+                  <img
+                    src={userprofile?.photoURL || 'https://via.placeholder.com/40'}
+                    alt="user"
+                    className="object-cover w-full h-full"
+                  />
                 </div>
-                <a className="text-white text-3xl">🌿Plant-World</a>
+              </div>
+              <ul className="menu menu-sm absolute right-0 bg-base-100 text-green-700 rounded-box z-10 mt-3 w-72 p-2 shadow opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                <li><span><strong>Email:  </strong> {userprofile?.email}</span></li>
+                <li><span><strong>Name:</strong> {userprofile?.displayName || 'No Name'}</span></li>
+              </ul>
             </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 space-x-5">
-                    <NavLink to='/' className="btn">Home</NavLink>
 
-                    <NavLink to='/allplant' className="btn">All Plant</NavLink>
-
-                    {
-                        userprofile?.email && <NavLink className="btn" to='/myplaint'>My Plants</NavLink>
-                    }
-                    {
-                        userprofile?.email && <NavLink to='/addplain' className="btn">Add Plant</NavLink>
-                    }
-
-
-
-                </ul>
-            </div>
-            <div className="navbar-end">
-
-
-                <div className='flex items-center'>
-
-
-                    {
-                        userprofile?.email && <div className="flex">
-                            <div className="relative group ml-4">
-                                <div className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img
-                                            alt='user Pic'
-                                            src={userprofile.photoURL}
-                                        />
-                                    </div>
-                                </div>
-                                <ul
-                                    className="menu menu-sm absolute right-0 bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200"
-                                >
-                                    <li className="flex flex-row items-center">
-                                        Email: <a href={`mailto:${userprofile?.email}`}>{userprofile?.email}</a>
-                                    </li>
-
-                                    <li className="flex flex-row items-center">
-                                        Name: <span>{userprofile?.displayName}</span>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-
-                        </div>
-                    }
-
-                    {
-                        !userprofile?.email && <div className='flex items-center gap-3.5'>
-                            <Link to='/login' className="btn">Login</Link>
-                            <Link to='/signup' className="btn" >Sign-up</Link>
-
-                        </div>
-                    }
-                    {
-                        userprofile?.email && <button
-                            onClick={handelLogout}
-                            className="inline-flex btn-warning items-center justify-center w-full px-5 py-2 text-base font-bold leading-6 text-white bg-indigo-600 border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                        >
-                            Sign-out
-                        </button>
-
-                    }
-
-
-                </div>
-
-
-            </div>
-        </div>
-    );
+            <button
+              onClick={handelLogout}
+              className="btn btn-warning"
+            >
+              Sign-out
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
