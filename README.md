@@ -1,7 +1,10 @@
 # 🌿 Plant Care Tracker — Client
 
-**Live Website**: [https://your-live-url.com](https://your-live-url.com)  
-**Server Repo**: [GitHub Server Link](#)
+
+**Live Website**: [https://assingment-10-9c374.web.app/](https://assingment-10-9c374.web.app/)  
+**Server Repository**: [https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-mohammad-oli56](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-mohammad-oli56)
+
+
 
 The **Plant Care Tracker** is a responsive web app that helps users manage plant care routines like watering, fertilizing, and monitoring plant health. Built with a succulent-inspired theme and optimized for mobile, tablet, and desktop devices.
 
