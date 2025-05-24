@@ -8,7 +8,7 @@ const Myplant = () => {
 
     useEffect(() => {
         if (userprofile?.email) {
-            fetch(`http://localhost:3000/plants-by-email?email=${userprofile.email}`)
+            fetch(`https://assingment-server-sable.vercel.app/plants-by-email?email=${userprofile.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setMyPlants(data);
@@ -23,6 +23,24 @@ const Myplant = () => {
     const handleDeleteSuccess = (deletedId) => {
         setMyPlants(prev => prev.filter(plant => plant._id !== deletedId));
     };
+
+     const [loading, setLoading] = useState(true);
+    
+        useEffect(() => {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+            }, 400); 
+    
+            return () => clearTimeout(timeout);
+        }, []);
+    
+        if (loading) {
+            return (
+                <div className="flex justify-center items-center h-screen">
+                    <span className="loading loading-bars loading-xl"></span>
+                </div>
+            );
+        }
 
     return (
         <div className="p-4 space-y-4">

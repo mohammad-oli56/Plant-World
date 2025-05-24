@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                loader: () => fetch('http://localhost:3000/plants'),
+                loader: () => fetch('https://assingment-server-sable.vercel.app/plants'),
                 Component: Home
             },
             {
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'allplant',
-                loader: () => fetch('http://localhost:3000/plants'),
+                loader: () => fetch('https://assingment-server-sable.vercel.app/plants'),
                 // Component: Allplant,
                 element: <Private><Allplant></Allplant></Private>
             },
@@ -57,11 +57,11 @@ export const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <Private><Details /></Private>,
-                loader: ({ params }) => fetch(`http://localhost:3000/plants/${params.id}`)
+                loader: ({ params }) => fetch(`https://assingment-server-sable.vercel.app/plants/${params.id}`)
             },
             {
                 path: '/update/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/plants/${params.id}`),
+                loader: ({ params }) => fetch(`https://assingment-server-sable.vercel.app/plants/${params.id}`),
                 element: <UpdatePage></UpdatePage>
 
             },

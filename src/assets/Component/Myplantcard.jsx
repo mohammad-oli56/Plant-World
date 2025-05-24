@@ -26,7 +26,7 @@ const Myplantcard = ({ mypln, onDelete }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/plants/${_id}`, {
+                fetch(`https://assingment-server-sable.vercel.app/plants/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

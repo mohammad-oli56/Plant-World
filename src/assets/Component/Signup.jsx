@@ -23,7 +23,7 @@ const Signup = () => {
           theme: 'light',
         });
 
-        navigate(from);
+       navigate(from?from:"/")
       })
       .catch((error) => {
         console.log(error);
@@ -50,6 +50,7 @@ const Signup = () => {
 
     signup(email, password)
       .then((result) => {
+		navigate(from?from:"/")
         const userProfile = {
           email,
           ...rest,
@@ -57,7 +58,7 @@ const Signup = () => {
           lastSignInTime: result.user?.metadata?.lastSignInTime,
         };
 
-        fetch('http://localhost:3000/users', {
+        fetch('https://assingment-server-sable.vercel.app/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(userProfile),

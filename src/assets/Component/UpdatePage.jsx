@@ -24,7 +24,7 @@ const UpdatePage = () => {
         const formData = new FormData(form);
         const updatedPlant = Object.fromEntries(formData.entries());
 
-        fetch(`http://localhost:3000/plants/${_id}`, {
+        fetch(`https://assingment-server-sable.vercel.app/plants/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

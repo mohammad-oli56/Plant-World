@@ -13,7 +13,7 @@ const Addplant = () => {
 
         plantData.email = userprofile.email;
 
-        fetch('http://localhost:3000/plants', {
+        fetch('https://assingment-server-sable.vercel.app/plants', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

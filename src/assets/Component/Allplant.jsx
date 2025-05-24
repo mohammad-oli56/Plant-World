@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import SinglePlant from './SinglePlant';
 
 const Allplant = () => {
   const plants = useLoaderData();
+
+   const [loading, setLoading] = useState(true);
+    
+        useEffect(() => {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+            }, 400); 
+    
+            return () => clearTimeout(timeout);
+        }, []);
+    
+        if (loading) {
+            return (
+                <div className="flex justify-center items-center h-screen">
+                    <span className="loading loading-bars loading-xl"></span>
+                </div>
+            );
+        }
 
   return (
     <div className="p-6">

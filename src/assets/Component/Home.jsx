@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { useLoaderData } from 'react-router';
 import { format } from 'date-fns';
@@ -12,6 +12,25 @@ const Home = () => {
   const plants = useLoaderData();
   const [showAll] = useState(false);
   // console.log(setShowAll)
+
+     const [loading, setLoading] = useState(true);
+    
+        useEffect(() => {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+            }, 700); 
+    
+            return () => clearTimeout(timeout);
+        }, []);
+    
+        if (loading) {
+            return (
+                <div className="flex justify-center items-center h-screen">
+                    <span className="loading loading-bars loading-xl"></span>
+                </div>
+            );
+        }
+    
 
   const visiblePlants = showAll ? plants : plants.slice(0, 6);
   const today = format(new Date(), 'yyyy-MM-dd');

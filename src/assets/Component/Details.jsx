@@ -14,6 +14,8 @@ const Details = () => {
         wateringFrequency
     } = plant;
 
+    
+
     return (
         <div className="p-6 flex justify-center">
             <div className="max-w-md w-full bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
