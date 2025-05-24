@@ -1,12 +1,82 @@
-# React + Vite
+# 🌿 Plant Care Tracker — Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Website**: [https://your-live-url.com](https://your-live-url.com)  
+**Server Repo**: [GitHub Server Link](#)
 
-Currently, two official plugins are available:
+The **Plant Care Tracker** is a responsive web app that helps users manage plant care routines like watering, fertilizing, and monitoring plant health. Built with a succulent-inspired theme and optimized for mobile, tablet, and desktop devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 **Authentication** with Firebase (Email/Password + Google)
+- 🌱 **Add, Update, Delete Plants**
+- 📅 **Track watering & care dates**
+- 🌗 **Dark/Light mode toggle**
+- 📊 **Sort plants** by watering date or care level
+- 🧠 **Tooltips, animations, and spinners** for a modern UI
+- 💬 **Meaningful success/error toasts** via `react-toastify`
+
+---
+
+- 🔐 **Private Routes**
+- **Addplant**
+- **Myplants**
+- **Allplants**
+
+---
+
+
+## 🧪 Tech Stack
+
+- **React**
+- **Tailwind CSS** + **DaisyUI**
+- **Firebase Auth**
+- **React Router DOM**
+- **React Toastify**
+- **Date-fns**
+- **Lottie React**
+- **React Tooltip**
+
+---
+
+- 📜 **Notable Features**
+-  **Responsive design**
+- **Toast-based alerts (no alert())**
+- **Latest plant displayed first**
+- **15+ client-side commits**
+- **404 error page**
+- **Creative succulent-based UI**
+
+---
+
+## 📧 Contact
+
+- **GitHub**: [https://github.com/mohammad-oli56](https://github.com/mohammad-oli56)
+- **Email**: olimohammad286@gmail.com
+
+---
+
+## 🙋‍♂️ Author
+
+**Md Oli Ullah**  
+Junior Web Developer | CSE, Dhaka International University
+
+---
+
+## 📜 Guided By
+
+This project was guided and inspired by the learning journey at **[Programming Hero](https://web.programming-hero.com/)**.
+
+
+
+## 🛠️ Installation
+
+```bash
+git clone https://github.com/your-username/plant-care-client
+cd plant-care-client
+npm install
+npm run dev
+
+
+
