@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 const images = [
-  "https://thumbs.dreamstime.com/b/green-palm-leaves-flowers-banner-tropical-plant-hand-painted-watercolor-illustration-isolated-white-background-realistic-178542042.jpg",
-  "https://www.shutterstock.com/image-photo/banner-green-echeveria-front-window-260nw-1352072093.jpg",
-  "https://as2.ftcdn.net/jpg/02/25/44/15/1000_F_225441554_FBM3BPaYiliBNZfGnf0mvEFp1zQlINuN.jpg",
-  "https://img.pikbest.com/backgrounds/20190708/small-fresh-green-plant-banner-poster-background_1897711.jpg!bw700"
+  "https://t4.ftcdn.net/jpg/08/10/91/51/360_F_810915126_mrvA7T9JZK0eEfgdDtkp0FeRYDO3vS87.jpg",
+  "https://t3.ftcdn.net/jpg/09/34/45/84/360_F_934458498_ExtE5CqeHx8EjPLeVFgBRIUqS9JhqoUT.jpg",
+  "https://t3.ftcdn.net/jpg/12/10/71/74/360_F_1210717429_LxyGFb1AyFTx4yKS9pYuS8mykGYBIKjL.jpg",
+  "https://t3.ftcdn.net/jpg/12/34/31/46/360_F_1234314614_rFKd19t1Wfixhu9txtQ7c9Xq6zHPSMjn.jpg"
 ];
 
 const Slider = () => {
@@ -19,7 +19,7 @@ const Slider = () => {
   }, []);
 
   return (
-    <div className="carousel w-full">
+    <div className="w-full h-[60vh] overflow-hidden relative">
       {images.map((img, i) => (
         <div
           key={i}

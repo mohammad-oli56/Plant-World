@@ -16,6 +16,10 @@ import UpdatePage from '../assets/Component/UpdatePage';
 import Private from '../Private/Private';
 import Error from '../assets/Component/Error';
 import Profile from '../assets/Component/Profile';
+import AboutUsSection from '../assets/Component/AboutUsSection';
+import Contact from '../assets/Component/Contact';
+import SupportSection from '../assets/Component/SupportSection';
+import Dashboard from '../assets/Component/Dashboard';
 
 
 export const router = createBrowserRouter([
@@ -39,10 +43,10 @@ export const router = createBrowserRouter([
                 Component: Signup
             },
             {
-                path: 'allplant',
+                path: '/allplant',
                 loader: () => fetch('https://assingment-server-sable.vercel.app/plants'),
                 // Component: Allplant,
-                element: <Private><Allplant></Allplant></Private>
+                element: <Allplant></Allplant>
             },
             {
                 path: '/myplaint',
@@ -69,6 +73,22 @@ export const router = createBrowserRouter([
                 path: "/profile",
                 element: <Private> <Profile></Profile></Private>
             },
+            {
+                path:'/about-us',
+                element:<AboutUsSection></AboutUsSection>
+            },
+            {
+                path :'/contact',
+                element: <Contact />
+            },
+            {
+                path:'/support',
+                element: <SupportSection></SupportSection>
+            },
+            {
+                path:'/dashboard',
+                element: <Private><Dashboard></Dashboard></Private>
+            }
 
         ]
     },

@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router'; // Use react-router-dom not 
 
 const Details = () => {
     const plant = useLoaderData();
+    
     const {
         plantName,
         image,
@@ -11,10 +12,11 @@ const Details = () => {
         healthStatus,
         lastWatered,
         nextWatering,
-        wateringFrequency
+        wateringFrequency,
+        description
     } = plant;
 
-    
+    console.log(plant)
 
     return (
         <div className="p-6 flex justify-center">
@@ -34,6 +36,7 @@ const Details = () => {
                         <li><span className="font-medium">Last Watered:</span> {lastWatered}</li>
                         <li><span className="font-medium">Next Watering:</span> {nextWatering}</li>
                         <li><span className="font-medium">Watering Frequency:</span> {wateringFrequency}</li>
+                         <li><span className="font-medium">Description:</span> {description}</li>
                     </ul>
 
                   <Link to='/allplant'>

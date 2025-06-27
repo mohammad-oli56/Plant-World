@@ -1,51 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { toast } from 'react-toastify';
+// ContactSection.jsx
 
-const Contact = () => {
+import React, { useState } from "react";
 
-        const tost=()=>{
-            toast.success('messege sent ', {
-position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: false,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-theme: "colored",
-// transition: Bounce,
-});
-        }
+const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-    return (
-        <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 bg-[#A8C686]">
-            <div className="flex flex-col justify-between">
-                <div className="space-y-2">
-                    <h2 className="text-4xl font-bold leading-tight lg:text-5xl">Contact us</h2>
-                    <div className="dark:text-gray-600">Vivamus in nisl metus? Phasellus.</div>
-                </div>
-                <img src="https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?semt=ais_hybrid&w=740" alt="" className="p-6 h-80  md-20" />
-            </div>
-            <form noValidate="" className="space-y-6">
-                <div>
-                    <label htmlFor="name" className="text-sm">Full name</label>
-                    <input id="name" type="text" placeholder="" className="w-full p-3 rounded dark:bg-gray-100" />
-                </div>
-                <div>
-                    <label htmlFor="email" className="text-sm">Email</label>
-                    <input id="email" type="email" className="w-full p-3 rounded dark:bg-gray-100" />
-                </div>
-                <div>
-                    <label htmlFor="message" className="text-sm">Message</label>
-                    <textarea id="message" rows="3" className="w-full p-3 rounded dark:bg-gray-100"></textarea>
-                </div>
-               <Link to='/'>
-                <button onClick={tost}  type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-600 dark:text-gray-50">Send Message</button>
-               </Link>
-            </form>
-        </div>
-    );
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // TODO: Send formData to backend or email service
+    console.log("Contact form submitted:", formData);
+    setSubmitted(true);
+    setFormData({ name: "", email: "", message: "" });
+  };
+
+  return (
+    <section className="bg-[#f4fff8] py-12 px-4 md:px-10 lg:px-20">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-[#1f3522] text-center mb-6">📞 Contact Us</h2>
+        <p className="text-gray-600 text-center mb-8">
+          Have a question, suggestion, or need help with your plant? We're here for you!
+        </p>
+
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message"
+              required
+              rows="5"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
+            ></textarea>
+            <button
+              type="submit"
+              className="w-full bg-[#1f3522] text-white py-3 rounded-xl hover:bg-green-900 transition"
+            >
+              Send Message
+            </button>
+          </form>
+        ) : (
+          <p className="text-green-700 text-center text-lg font-medium">
+            ✅ Thank you! Your message has been sent.
+          </p>
+        )}
+      </div>
+    </section>
+  );
 };
 
-export default Contact;
+export default ContactSection;

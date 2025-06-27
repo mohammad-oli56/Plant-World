@@ -23,7 +23,7 @@ const Signup = () => {
           theme: 'light',
         });
 
-       navigate(from?from:"/")
+        navigate(from ? from : "/")
       })
       .catch((error) => {
         console.log(error);
@@ -50,7 +50,7 @@ const Signup = () => {
 
     signup(email, password)
       .then((result) => {
-		navigate(from?from:"/")
+        navigate(from ? from : "/")
         const userProfile = {
           email,
           ...rest,
