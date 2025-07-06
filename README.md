@@ -40,6 +40,7 @@ The **Plant Care Tracker** is a responsive web app that helps users manage plant
 - **Date-fns**
 - **Lottie React**
 - **React Tooltip**
+- **mongodb**
 
 ---
 
